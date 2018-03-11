@@ -1,3 +1,11 @@
+
+原文地址：https://gitlab.com/help/workflow/gitlab_flow.md
+
 * GitLab工作流
 ** 简介
-使用git进行版本管理，使得分支和合并比早期的版本系统(如svn)容易得多。
+使用git进行版本管理，使得分支和合并比早期的版本系统(如svn)容易得多。这也意味着可以支持多样的分支策略和工作流。
+这些也都改善了在git之前的使用方式。但大多数机构的工作流程要么定义不够清晰，要么太过复杂，或者并没有整合入问题追
+踪系统。基于此，我们提出了GitLab工作流作为明确的最佳实践。它整合了[[https://en.wikipedia.org/wiki/Feature-driven_development][功能驱动开发]]和带有问题追踪的[[http://martinfowler.com/bliki/FeatureBranch.html][功能分支]]。
+
+刚从其它版本控制系统迁移到git时，大多数公司常会觉得很难找到一种高效的工作流。本文介绍了GitLab工作流，它将问题
+追踪系统整合到了git工作流中，也提供了一种简单、透明、有效的方式来使用git。
