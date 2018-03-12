@@ -19,15 +19,18 @@
 ** Git工作流及其问题
 #+DOWNLOADED: https://gitlab.com/help/workflow/gitdashflow.png @ 2018-03-12 02:02:21
 [[file:img/20180312020216.png]]
+
 Git工作流是最早使用git分支功能的提议之一，并且受到了广泛关注。它支持一个master分支，一个单独的develop分支，同时支持诸如features、releases和hotfixes等分支。开发主要在develop分支中，然后移动到release分支，最后被合并到master分支中。Git工作流定义了一个很好的标准，但它的复杂性引入了两个问题。第一个问题是，开发人员必须使用develop分支而不是master分支，master分支只用来储存发布到生产环境的代码。然而通常默认分支名为master，且大多数分支来来自于master并合并到master分支中。因为很多工具自动将master分支作为默认分支并展示，所以你还要麻烦地切换到另外一个分支。第二个问题则是由hotfix和release分支带来的复杂性。这些分支可能对有些机构来说很不错，但对于更多数机构来说却是有害的。现在很多机构开始使用持续交付，意味着你的默认分支是可以被部署的。这意味着hostfix和release分支不能再很好的契合原有的使用场景(todo)。例如release分支的合并。尽管有特殊的工具来解决这个问题，但仍需要文档并加大了复杂性。开发者常会犯错误比如修改只合并到了master分支而没有合并到develop分支。造成这些错误的根本原因，是git工作流对于大多数使用场景来说太灵活了。而且做一次预发布并不意味着会自动做一次热修复。
 
 ** GitHub工作流——一个简化版的替代品
 #+DOWNLOADED: https://gitlab.com/help/workflow/github_flow.png @ 2018-03-12 10:29:07
 [[file:img/20180312102904.png]]
+
 GitHub工作流，作为一个简化版的Git工作流被提出。这个工作流只有一些feature分支和一个master分支，这很简单和干净。很多机构都成功地运用了它。Atlassian提出了一个类似的策略，不同的是他们衍合分支(todo)。把所有修改合并到master分支并部署，意味着你可以最大化地减少库存的代码量，这也与精益交付和可持续交付的最佳实践一致。然而这种工作流仍然有很多问题没有解决好，如忽略了部署、环境、预发布以及整合问题。在GitLab工作流中，对于这些问题，我们都有额外的指导。
 ** GitLab工作流中的Production(生产)分支
 #+DOWNLOADED: https://gitlab.com/help/workflow/production_branch.png @ 2018-03-12 11:50:49
 [[file:img/20180312115045.png]]
+
 GitHub工作流假定你在每次合并一个功能分支时，都会部署到生产上去。这对于一些Saas应用来说也许可以，但仍有很多场景并不适用。有时候你并不能精确的控制发布时间，比如一个IOS应用需要通过App Store的审核。又如当你有一个发布窗口时（在工作日上午10点到下午4点团队都在满负荷运转）,你又在其它时间合并了代码。在这些情况下，你需要新建一个production分支来追踪被部署的代码。你可以通过合并master分支到production分支来发布一个新版本。当你想知道生产上的是什么代码时， 只需要检出production分支来看一下即可，提交代码的时间也大致是发布时间，尤其是在自动部署生产分支的情况下。如果需要一个更确切的时间，你可以让你的发布脚本在每次发布时创建一个标签。这种工作流可以预防像git工作流中常见的过多的预发布、标签和合并现象。
 ** GitLab工作流之环境分支
 #+DOWNLOADED: https://gitlab.com/help/workflow/environment_branches.png @ 2018-03-12 13:55:00
